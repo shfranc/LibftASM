@@ -7,5 +7,5 @@ else
 	SRC=$(basename $1 .s)
 fi
 
-nasm -f macho $SRC.s -o $SRC.o
+nasm -f macho64 $SRC.s -o $SRC.o
 ld $SRC.o -macosx_version_min 10.8 -lSystem
