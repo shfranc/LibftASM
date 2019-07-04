@@ -10,19 +10,44 @@ hello:
 section .text
 	global start
 	global _main
+	global _ft_puts
+
+_ft_puts:
+	push rbp
+	mov rbp, rsp
+	sub rsp, 16
+
+	; write(fd, ptr, len) // rdi, rsi, rdx
+	mov rsi, rdi ; on récupere la string, on la place dans le second registre
+	mov rdi, STDOUT
+	push rsi
+	mov rcx, 0
+
+	.loop:
+		cmp byte[rsi], 0
+		je .put_str
+		inc rcx
+		inc rsi
+		jmp .loop
+
+	.put_str:
+	pop rsi
+	mov rdx, rcx
+	mov rax, MACH_SYSCALL(WRITE)
+	syscall
+	jmp .leave
+
+	.leave:
+		mov rsp, rbp
+		pop rbp
+		ret
 
 start:
 	call _main
 	ret
 
 _main:
-	push rbp
-	mov rbp, rsp
-	sub rsp, 16
-	mov rdi, STDOUT
-	lea rsi, [rel hello.string]
-	mov rdx, hello.len
-	mov rax, MACH_SYSCALL(WRITE)
-	syscall
-	leave
+	mov rdi, hello.string
+	;mov rsi, hello.len
+	call _ft_puts
 	ret
