@@ -6,14 +6,14 @@ section .text
 
 ;int		ft_isalpha(int c);
 _ft_isalpha:
-	cmp edi, `A`
+	cmp rdi, `A`
 	jl .false
-	cmp edi, `z`
+	cmp rdi, `Z`
+	jle .true
+	cmp rdi, `a`
+	jl .false
+	cmp rdi, `z`
 	jg .false
-	cmp edi, `Z`
-	jl .true
-	cmp edi, `a`
-	jg .true
 
 	.true:
 		mov rax, TRUE
