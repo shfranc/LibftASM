@@ -5,6 +5,7 @@ void	ft_bzero(void *s, size_t size);
 char 	*ft_strcat(char *restrict s1, const char *restrict s2);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
+int		ft_isalnum(int c);
 int		ft_puts(const char *s);
 
 char	*put_boolean(int b)
@@ -76,6 +77,18 @@ int		main(void)
 		printf("isdigit: %c-> %s\n", 'Z', put_boolean(ft_isdigit('Z')));
 		printf("isdigit: %c-> %s\n", '?', put_boolean(ft_isdigit('?')));
 		printf("isdigit: %c-> %s\n", '*', put_boolean(ft_isdigit('*')));
+	}
+
+	printf("\nFT_ISALNUM\n");
+	{
+		printf("isalnum: %c-> %s\n", '0', put_boolean(ft_isalnum('0')));
+		printf("isalnum: %c-> %s\n", '5', put_boolean(ft_isalnum('5')));
+		printf("isalnum: %c-> %s\n", '9', put_boolean(ft_isalnum('9')));
+		printf("isalnum: %c-> %s\n", 'j', put_boolean(ft_isalnum('j')));
+		printf("isalnum: %c-> %s\n", 'z', put_boolean(ft_isalnum('z')));
+		printf("isalnum: %c-> %s\n", 'Z', put_boolean(ft_isalnum('Z')));
+		printf("isalnum: %c-> %s\n", '?', put_boolean(ft_isalnum('?')));
+		printf("isalnum: %c-> %s\n", '*', put_boolean(ft_isalnum('*')));
 	}
 
 	printf("\nFT_PUTS\n");
