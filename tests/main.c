@@ -6,6 +6,9 @@ char 	*ft_strcat(char *restrict s1, const char *restrict s2);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
+int		ft_isascii(int c);
+int		ft_isprint(int c);
+int		ft_toupper(int c);
 int		ft_puts(const char *s);
 
 char	*put_boolean(int b)
@@ -55,40 +58,25 @@ int		main(void)
 	// 	printf("result: %s\n", ft_strcat(s1, s2));
 	// }
 
-	printf("\nFT_ISALPHA\n");
+	printf("\n\tISALPHA\tISDIGIT\tISALNUM\tISASCII\n");
 	{
-		printf("isalpha: %c-> %s\n", 'a', put_boolean(ft_isalpha('a')));
-		printf("isalpha: %c-> %s\n", 'A', put_boolean(ft_isalpha('A')));
-		printf("isalpha: %c-> %s\n", 'J', put_boolean(ft_isalpha('J')));
-		printf("isalpha: %c-> %s\n", 'j', put_boolean(ft_isalpha('j')));
-		printf("isalpha: %c-> %s\n", 'z', put_boolean(ft_isalpha('z')));
-		printf("isalpha: %c-> %s\n", 'Z', put_boolean(ft_isalpha('Z')));
-		printf("isalpha: %c-> %s\n", '?', put_boolean(ft_isalpha('?')));
-		printf("isalpha: %c-> %s\n", '9', put_boolean(ft_isalpha('9')));
+		int i = 128;
+		while (i-- > 0)
+			printf("%3d %c \t%s\t%s\t%s\n", i, i, 
+				put_boolean(ft_isalpha(i)),
+				put_boolean(ft_isdigit(i)),
+				put_boolean(ft_isalnum(i))
+			);
 	}
 
-	printf("\nFT_ISDIGIT\n");
+	printf("\nFT_TOUPPER\n");
 	{
-		printf("isdigit: %c-> %s\n", '0', put_boolean(ft_isdigit('0')));
-		printf("isdigit: %c-> %s\n", '5', put_boolean(ft_isdigit('5')));
-		printf("isdigit: %c-> %s\n", '9', put_boolean(ft_isdigit('9')));
-		printf("isdigit: %c-> %s\n", 'j', put_boolean(ft_isdigit('j')));
-		printf("isdigit: %c-> %s\n", 'z', put_boolean(ft_isdigit('z')));
-		printf("isdigit: %c-> %s\n", 'Z', put_boolean(ft_isdigit('Z')));
-		printf("isdigit: %c-> %s\n", '?', put_boolean(ft_isdigit('?')));
-		printf("isdigit: %c-> %s\n", '*', put_boolean(ft_isdigit('*')));
-	}
-
-	printf("\nFT_ISALNUM\n");
-	{
-		printf("isalnum: %c-> %s\n", '0', put_boolean(ft_isalnum('0')));
-		printf("isalnum: %c-> %s\n", '5', put_boolean(ft_isalnum('5')));
-		printf("isalnum: %c-> %s\n", '9', put_boolean(ft_isalnum('9')));
-		printf("isalnum: %c-> %s\n", 'j', put_boolean(ft_isalnum('j')));
-		printf("isalnum: %c-> %s\n", 'z', put_boolean(ft_isalnum('z')));
-		printf("isalnum: %c-> %s\n", 'Z', put_boolean(ft_isalnum('Z')));
-		printf("isalnum: %c-> %s\n", '?', put_boolean(ft_isalnum('?')));
-		printf("isalnum: %c-> %s\n", '*', put_boolean(ft_isalnum('*')));
+		int i = 32;
+		while (i < 126)
+		{
+			printf("%c -> %c\n", i, ft_toupper(i));
+			i++;
+		}
 	}
 
 	printf("\nFT_PUTS\n");

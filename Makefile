@@ -10,6 +10,9 @@ SRCS = 	$(addprefix $(PATH_SRCS)/, \
 	ft_isalpha.s \
 	ft_isdigit.s \
 	ft_isalnum.s \
+	ft_isascii.s \
+	ft_isprint.s \
+	ft_toupper.s \
 	ft_puts.s \
 	)
 

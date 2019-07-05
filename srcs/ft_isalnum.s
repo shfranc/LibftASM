@@ -9,13 +9,17 @@ section .text
 ;int		ft_isalnum(int c);
 _ft_isalnum:
 	call _ft_isalpha
-	cmp rax, FALSE
-	je .false
-	call _ft_isdigit
-	cmp rax, FALSE
-	je .false
-	mov rax, TRUE
 	ret
+	cmp rax, TRUE
+	je .true
+	call _ft_isdigit
+	cmp rax, TRUE
+	jmp .true
+	jmp .false
+
+	.true:
+		mov rax, TRUE
+		ret
 
 	.false:
 		mov rax, FALSE
