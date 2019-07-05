@@ -2,6 +2,7 @@
 #include <string.h>
 
 void	ft_bzero(void *s, size_t size);
+char *ft_strcat(char *restrict s1, const char *restrict s2);
 int		ft_puts(const char *s);
 
 int		main(void)
@@ -30,6 +31,20 @@ int		main(void)
 	// 	printf("str: %s\t- len: %lu\n", s, strlen(s));
 	// 	ft_bzero(s, strlen(s)); // le vai bzero segfault aussi ici
 	// 	printf("str: %s\t- len: %lu\n", s, strlen(s));
+	// }
+
+	printf("\nFT_STRCAT\n");
+	{
+		char s2[9] = "*********";
+		char s1[20] = "test strcat";
+		printf("str1: %s\t- str2: %s\n", s1, s2);
+		printf("result: %s\n", ft_strcat(s1, s2));
+	}
+	// {
+	// 	char s2[9] = "*********";
+	// 	char s1[11] = "test strcat";
+	// 	printf("str1: %s\t- str2: %s\n", s1, s2);
+	// 	printf("result: %s\n", ft_strcat(s1, s2));
 	// }
 
 	printf("\nFT_PUTS\n");

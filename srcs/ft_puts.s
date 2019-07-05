@@ -31,10 +31,10 @@ _ft_puts:
 		jmp .loop
 
 	.put_str:
-	pop rsi
-	mov rdx, rcx
-	mov rax, MACH_SYSCALL(WRITE)
-	syscall
+		pop rsi
+		mov rdx, rcx
+		mov rax, MACH_SYSCALL(WRITE)
+		syscall
 
 	;Print newline
     mov rsi, newline.string
