@@ -7,7 +7,6 @@ section .text
 
 ;int		ft_toupper(int c);
 _ft_toupper:
-	mov rdi, rdi
 	call _ft_isalpha
 	cmp rax, TRUE
 	jne .leave

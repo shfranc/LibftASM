@@ -7,7 +7,6 @@ section .text
 
 ;int		ft_tolower(int c);
 _ft_tolower:
-	mov rdi, rdi
 	call _ft_isalpha
 	cmp rax, TRUE
 	jne .leave
