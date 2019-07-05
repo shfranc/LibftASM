@@ -7,6 +7,7 @@ PATH_SRCS = srcs
 SRCS = 	$(addprefix $(PATH_SRCS)/, \
 	ft_bzero.s \
 	ft_strcat.s \
+	ft_puts.s \
 	)
 
 PATH_OBJS = objs
@@ -39,7 +40,7 @@ $(C_TEST): $(NAME) $(C_MAIN)
 	@$(CC) $(FLAGS) $(C_MAIN_O) $(NAME) -o $@
 	@printf "$(GREEN)%s$(RESET): OK\n" "$@"
 
-test: $(C_TEST)
+test: $(NAME) $(C_TEST)
 	@printf "$(GREEN)*** RUN C TESTS ***$(RESET):\n"
 	@./$(C_TEST)
 

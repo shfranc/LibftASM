@@ -7,8 +7,6 @@ _ft_bzero:
 	mov rbp, rsp
 	sub rsp, 16
 
-	cmp rsi, 0
-
 	.loop:
 		cmp rsi, 0
 		je leave
