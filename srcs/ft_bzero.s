@@ -3,8 +3,11 @@ section .text
 
 ;void	ft_bzero(void *s, size_t size);
 _ft_bzero:
+	push rbp
 	mov rbp, rsp
 	sub rsp, 16
+
+	cmp rsi, 0
 
 	.loop:
 		cmp rsi, 0

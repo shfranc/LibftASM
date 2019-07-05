@@ -6,6 +6,7 @@ NASM = nasm
 PATH_SRCS = srcs
 SRCS = 	$(addprefix $(PATH_SRCS)/, \
 	ft_bzero.s \
+	ft_strcat.s \
 	)
 
 PATH_OBJS = objs
