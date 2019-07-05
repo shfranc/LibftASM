@@ -1,4 +1,6 @@
 libftasm.a
+compil_tests
 a.out
 *.o
+.vscode/
 
