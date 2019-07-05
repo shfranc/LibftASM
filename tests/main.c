@@ -9,6 +9,7 @@ int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_toupper(int c);
+int		ft_tolower(int c);
 int		ft_puts(const char *s);
 
 char	*put_boolean(int b)
@@ -75,6 +76,16 @@ int		main(void)
 		while (i < 126)
 		{
 			printf("%c -> %c\n", i, ft_toupper(i));
+			i++;
+		}
+	}
+
+	printf("\nFT_TOLOWER\n");
+	{
+		int i = 32;
+		while (i < 126)
+		{
+			printf("%c -> %c\n", i, ft_tolower(i));
 			i++;
 		}
 	}
