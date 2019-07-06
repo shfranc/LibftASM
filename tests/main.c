@@ -64,32 +64,23 @@ int		main(void)
 		int i = -1;
 		while (i <= 130)
 		{
-			printf("%3d %c \t%s\t%s\t%s\t%s\n", i, i, 
+			printf("%3d %c \t%s\t%s\t%s\t%s\t%s\n", i, i, 
 				put_boolean(ft_isalpha(i)),
 				put_boolean(ft_isdigit(i)),
 				put_boolean(ft_isalnum(i)),
-				put_boolean(ft_isascii(i))
+				put_boolean(ft_isascii(i)),
+				put_boolean(ft_isprint(i))
 			);
 			i++;
 		}
 	}
 
-	printf("\nFT_TOUPPER\n");
+	printf("\n\tTOUPPER\tTOLOWER\n");
 	{
 		int i = 32;
-		while (i < 126)
+		while (i <= 126)
 		{
-			printf("%c -> %c\n", i, ft_toupper(i));
-			i++;
-		}
-	}
-
-	printf("\nFT_TOLOWER\n");
-	{
-		int i = 32;
-		while (i < 126)
-		{
-			printf("%c -> %c\n", i, ft_tolower(i));
+			printf("%c:\t%c\t%c\n", i, ft_toupper(i), ft_tolower(i));
 			i++;
 		}
 	}

@@ -11,13 +11,9 @@ _ft_isprint:
 	cmp edi, 126
 	jg .false
 	mov rax, TRUE
-	jmp leave
+	ret
 
 	.false:
 		mov rax, FALSE
-		jmp leave
+		ret
 
-leave:
-	mov rsp, rbp
-	pop rbp
-	ret
