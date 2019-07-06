@@ -6,18 +6,13 @@ section .text
 
 ;int		ft_isascii(int c);
 _ft_isascii:
-	; cmp edi, 0
-	; jl .false
-	; cmp edi, 128
-	; jg .false
+	cmp edi, 0
+	jl .false
+	cmp edi, 127
+	jg .false
 	mov rax, TRUE
-	jmp leave
+	ret
 
 	.false:
 		mov rax, FALSE
-		jmp leave
-
-leave:
-	mov rsp, rbp
-	pop rbp
-	ret
+		ret

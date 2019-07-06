@@ -61,13 +61,14 @@ int		main(void)
 
 	printf("\n\tISALPHA\tISDIGIT\tISALNUM\tISASCII\tISPRINT\n");
 	{
-		int i = 0;
-		while (i <= 128)
+		int i = -1;
+		while (i <= 130)
 		{
-			printf("%3d %c \t%s\t%s\t%s\n", i, i, 
+			printf("%3d %c \t%s\t%s\t%s\t%s\n", i, i, 
 				put_boolean(ft_isalpha(i)),
 				put_boolean(ft_isdigit(i)),
-				put_boolean(ft_isalnum(i))
+				put_boolean(ft_isalnum(i)),
+				put_boolean(ft_isascii(i))
 			);
 			i++;
 		}

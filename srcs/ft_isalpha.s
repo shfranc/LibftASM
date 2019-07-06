@@ -6,13 +6,13 @@ section .text
 
 ;int		ft_isalpha(int c);
 _ft_isalpha:
-	cmp rdi, `A`
+	cmp edi, `A`
 	jl .false
-	cmp rdi, `Z`
+	cmp edi, `Z`
 	jle .true
-	cmp rdi, `a`
+	cmp edi, `a`
 	jl .false
-	cmp rdi, `z`
+	cmp edi, `z`
 	jg .false
 
 	.true:
