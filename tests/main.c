@@ -59,15 +59,18 @@ int		main(void)
 	// 	printf("result: %s\n", ft_strcat(s1, s2));
 	// }
 
-	printf("\n\tISALPHA\tISDIGIT\tISALNUM\tISASCII\n");
+	printf("\n\tISALPHA\tISDIGIT\tISALNUM\tISASCII\tISPRINT\n");
 	{
-		int i = 128;
-		while (i-- > 0)
+		int i = 0;
+		while (i <= 128)
+		{
 			printf("%3d %c \t%s\t%s\t%s\n", i, i, 
 				put_boolean(ft_isalpha(i)),
 				put_boolean(ft_isdigit(i)),
 				put_boolean(ft_isalnum(i))
 			);
+			i++;
+		}
 	}
 
 	printf("\nFT_TOUPPER\n");
