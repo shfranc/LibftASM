@@ -8,6 +8,10 @@ section .text
 
 ;int		ft_isalnum(int c);
 _ft_isalnum:
+	push rbp
+	mov rbp, rsp
+	sub rsp, 16
+
 	call _ft_isalpha
 	cmp rax, TRUE
 	je .leave
@@ -15,7 +19,9 @@ _ft_isalnum:
 	cmp rax, TRUE
 	je .leave
 	mov rax, FALSE
-	ret
+	jmp .leave
 
 	.leave:
+		mov rsp, rbp
+		pop rbp
 		ret

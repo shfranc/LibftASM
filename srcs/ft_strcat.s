@@ -26,9 +26,9 @@ _ft_strcat:
 	.end:
 		pop rdi
 		mov rax, rdi
-	jmp leave
+		jmp .leave
 
-leave:
-	mov rsp, rbp
-	pop rbp
-	ret
+	.leave:
+		mov rsp, rbp
+		pop rbp
+		ret

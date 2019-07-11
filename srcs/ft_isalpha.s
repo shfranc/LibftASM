@@ -6,6 +6,10 @@ section .text
 
 ;int		ft_isalpha(int c);
 _ft_isalpha:
+	push rbp
+	mov rbp, rsp
+	sub rsp, 16
+
 	cmp edi, `A`
 	jl .false
 	cmp edi, `Z`
@@ -17,8 +21,13 @@ _ft_isalpha:
 
 	.true:
 		mov rax, TRUE
-		ret
+		jmp .leave
 
 	.false:
 		mov rax, FALSE
+		jmp .leave
+
+	.leave:
+		mov rsp, rbp
+		pop rbp
 		ret

@@ -7,6 +7,10 @@ section .text
 
 ;int		ft_tolower(int c);
 _ft_tolower:
+	push rbp
+	mov rbp, rsp
+	sub rsp, 16
+
 	call _ft_isalpha
 	cmp rax, TRUE
 	jne .leave
@@ -16,4 +20,6 @@ _ft_tolower:
 
 	.leave:
 		mov rax, rdi
+		mov rsp, rbp
+		pop rbp
 		ret

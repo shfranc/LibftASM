@@ -6,13 +6,22 @@ section .text
 
 ;int		ft_isascii(int c);
 _ft_isascii:
+	push rbp
+	mov rbp, rsp
+	sub rsp, 16
+
 	cmp edi, 0
 	jl .false
 	cmp edi, 127
 	jg .false
 	mov rax, TRUE
-	ret
+	jmp .leave
 
 	.false:
 		mov rax, FALSE
+		jmp .leave
+
+	.leave:
+		mov rsp, rbp
+		pop rbp
 		ret
