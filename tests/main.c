@@ -101,5 +101,10 @@ int		main(void)
 		puts(s);
 		ft_puts(s);
 	}
+	{
+		char *s = NULL;
+		puts(s);
+		ft_puts(s);
+	}
 	return (0);
 }

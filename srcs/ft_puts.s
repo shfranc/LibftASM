@@ -8,6 +8,9 @@ section .data
 newline:
 	.string db 0xa, 0xd
 	.len equ $ - newline.string
+null:
+	.string db "(null)"
+	.len equ $ - null.string
 
 section .text
 	global _ft_puts
@@ -21,30 +24,46 @@ _ft_puts:
 
 	mov rsi, rdi
 	mov rdi, STDOUT
+	cmp rsi, 0
+	je .print_null
+
 	push rsi
-
-	mov rcx, 0
-	.loop:
+	mov rdx, 0
+	.str_len:
 		cmp byte[rsi], 0
-		je .put_str
-		inc rcx
+		je .print_str
+		inc rdx
 		inc rsi
-		jmp .loop
+		jmp .str_len
 
-	.put_str:
+	.print_str:
 		pop rsi
-		mov rdx, rcx
+		jmp .put_endl
+
+	.print_null:
+		mov rsi, null.string
+		mov rdx, null.len
+		jmp .put_endl
+
+	.put_endl:
 		mov rax, MACH_SYSCALL(WRITE)
 		syscall
+		cmp rax, -1
+		je .failure
+		mov rsi, newline.string
+		mov rdx, newline.len
+		mov rax, MACH_SYSCALL(WRITE)
+		syscall
+		cmp rax, -1
+		je .failure
 
-	;Print newline
-    mov rsi, newline.string
-    mov rdx, newline.len
-    mov rax, MACH_SYSCALL(WRITE)
-    syscall
+	.success:
+		mov rax, SUCCESS
+		jmp .leave
 
-	mov rax, SUCCESS
-	jmp .leave
+	.failure:
+		mov rax, EOF
+		jmp .leave
 
 	.leave:
 		mov rsp, rbp
