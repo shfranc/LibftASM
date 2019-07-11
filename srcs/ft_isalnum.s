@@ -1,5 +1,5 @@
-%define TRUE		0
-%define FALSE		1
+%define TRUE		1
+%define FALSE		0
 
 section .text
 	global _ft_isalnum
@@ -16,6 +16,6 @@ _ft_isalnum:
 	je .leave
 	mov rax, FALSE
 	ret
-	
+
 	.leave:
 		ret

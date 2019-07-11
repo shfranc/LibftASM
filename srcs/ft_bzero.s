@@ -9,15 +9,15 @@ _ft_bzero:
 
 	.loop:
 		cmp rsi, 0
-		je leave
+		je .leave
 		mov byte[rdi], 0
 		inc rdi
 		dec rsi
 		jmp .loop
 
-	jmp leave
+	jmp .leave
 
-leave:
-	mov rsp, rbp
-	pop rbp
-	ret
+	.leave:
+		mov rsp, rbp
+		pop rbp
+		ret

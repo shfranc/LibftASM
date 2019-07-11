@@ -14,7 +14,7 @@ int		ft_puts(const char *s);
 
 char	*put_boolean(int b)
 {
-	return (b == 0 ? "true" : "false");
+	return (b == 1 ? "true" : "false");
 }
 
 int		main(void)
@@ -64,7 +64,7 @@ int		main(void)
 		int i = -1;
 		while (i <= 130)
 		{
-			printf("%3d %c \t%s\t%s\t%s\t%s\t%s\n", i, i, 
+			printf("%3d %c \t%s\t%s\t%s\t%s\t%s\n", i, i,
 				put_boolean(ft_isalpha(i)),
 				put_boolean(ft_isdigit(i)),
 				put_boolean(ft_isalnum(i)),

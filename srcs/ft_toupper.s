@@ -1,5 +1,5 @@
 %define TOGGLE	32
-%define TRUE	0
+%define TRUE	1
 
 section .text
 	global _ft_toupper
@@ -13,7 +13,7 @@ _ft_toupper:
 	cmp rdi, `a`
 	jl	.leave
 	sub rdi, TOGGLE
-	
+
 	.leave:
 		mov rax, rdi
 		ret

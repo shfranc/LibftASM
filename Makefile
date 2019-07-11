@@ -1,4 +1,4 @@
-NAME = libftasm.a
+NAME = libfts.a
 FLAGS = -Wall -Wextra -Werror
 CC = gcc
 NASM = nasm
@@ -52,11 +52,11 @@ test: $(NAME) $(C_TEST)
 	@./$(C_TEST)
 
 clean:
-	@rm -f $(OBJS) tests/*.o
+	@rm -rf $(PATH_OBJS) tests/*.o
 	@echo "$(BLUE)clean:$(RESET) $(PATH_OBJS)"
 
 fclean: clean
-	@rm -f $(NAME) $(C_TEST)
+	@rm -rf $(NAME) $(C_TEST)
 	@echo "$(BLUE)clean:$(RESET) $(NAME)"
 
 re: fclean all
