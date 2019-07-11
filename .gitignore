@@ -1,4 +1,7 @@
-libftasm.a
+libfts.a
+compil_tests
 a.out
 *.o
+.vscode/
+.DS_STORE
 

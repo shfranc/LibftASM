@@ -1,53 +1,71 @@
 %define MACH_SYSCALL(nb)		0x2000000 | nb
 %define STDOUT					1
 %define WRITE					4
+%define SUCCESS					10
+%define EOF						0
 
 section .data
-hello:
-	.string db "Hello World!", 10
-	.len equ $ - hello.string
+newline:
+	.string db 0xa, 0xd
+	.len equ $ - newline.string
+null:
+	.string db "(null)"
+	.len equ $ - null.string
 
 section .text
-	global start
-	global _main
 	global _ft_puts
 
+; int	ft_puts(const char *s);
+; write(fd, ptr, len) // rdi, rsi, rdx
 _ft_puts:
 	push rbp
 	mov rbp, rsp
 	sub rsp, 16
 
-	; write(fd, ptr, len) // rdi, rsi, rdx
-	mov rsi, rdi ; on récupere la string, on la place dans le second registre
+	mov rsi, rdi
 	mov rdi, STDOUT
+	cmp rsi, 0
+	je .print_null
+
 	push rsi
-	mov rcx, 0
-
-	.loop:
+	mov rdx, 0
+	.str_len:
 		cmp byte[rsi], 0
-		je .put_str
-		inc rcx
+		je .print_str
+		inc rdx
 		inc rsi
-		jmp .loop
+		jmp .str_len
 
-	.put_str:
-	pop rsi
-	mov rdx, rcx
-	mov rax, MACH_SYSCALL(WRITE)
-	syscall
-	jmp .leave
+	.print_str:
+		pop rsi
+		jmp .put_endl
+
+	.print_null:
+		mov rsi, null.string
+		mov rdx, null.len
+		jmp .put_endl
+
+	.put_endl:
+		mov rax, MACH_SYSCALL(WRITE)
+		syscall
+		cmp rax, -1
+		je .failure
+		mov rsi, newline.string
+		mov rdx, newline.len
+		mov rax, MACH_SYSCALL(WRITE)
+		syscall
+		cmp rax, -1
+		je .failure
+
+	.success:
+		mov rax, SUCCESS
+		jmp .leave
+
+	.failure:
+		mov rax, EOF
+		jmp .leave
 
 	.leave:
 		mov rsp, rbp
 		pop rbp
 		ret
-
-start:
-	call _main
-	ret
-
-_main:
-	mov rdi, hello.string
-	;mov rsi, hello.len
-	call _ft_puts
-	ret
