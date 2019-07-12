@@ -122,5 +122,17 @@ int		main(void)
 		ft_memset(src, c, strlen(src));
 		printf("src: %s\n", src);
 	}
+	{
+		char *src = strdup("********************");
+		char c = 0;
+		ft_memset(src, c, strlen(src));
+		printf("src: %s\n", src);
+	}
+	{
+		char *src = strdup("********************");
+		char c = 'o';
+		ft_memset(src, c, strlen(src) / 2);
+		printf("src: %s\n", src);
+	}
 	return (0);
 }
