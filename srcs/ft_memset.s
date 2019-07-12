@@ -11,7 +11,7 @@ _ft_memset:
 	mov rax, rsi
 	mov rcx, rdx
 	cld
-	rep stosb ; repeat copying bytes from rsi to rdi until rcx = 0
+	rep stosb ; repeat storing byte from rax to rdi until rcx = 0
 
 	pop rdi
 	mov rax, rdi

@@ -13,6 +13,7 @@ int		ft_tolower(int c);
 int		ft_puts(const char *s);
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
+size_t	ft_strlen(const char *s);
 
 char	*put_boolean(int b)
 {
@@ -133,6 +134,18 @@ int		main(void)
 		char c = 'o';
 		ft_memset(src, c, strlen(src) / 2);
 		printf("src: %s\n", src);
+	}
+	printf("\nFT_STRLEN\n");
+	{
+		char *src = strdup("Hello World!");
+		printf("%s: %zu\n", src, ft_strlen(src));
+	}
+	{
+		char *src = strdup("");
+		printf("%s: %zu\n", src, ft_strlen(src));
+	}
+	{
+		printf("%s: %zu\n", "(null)", ft_strlen(NULL));
 	}
 	return (0);
 }

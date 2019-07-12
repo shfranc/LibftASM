@@ -17,6 +17,7 @@ SRCS = 	$(addprefix $(PATH_SRCS)/, \
 	ft_puts.s \
 	ft_memcpy.s \
 	ft_memset.s \
+	ft_strlen.s \
 	)
 
 PATH_OBJS = objs
