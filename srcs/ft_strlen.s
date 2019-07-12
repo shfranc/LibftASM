@@ -10,7 +10,7 @@ _ft_strlen:
 	mov rsp, rdi
 	mov rax, 0
 	cld
-	repne scasb
+	repne scasb ; scan until not equal or not zero
 
 	sub rdi, rsp
 	cmp rdi, 0

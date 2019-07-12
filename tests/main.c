@@ -15,6 +15,9 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
 
+// BONUS
+void	*ft_memalloc(size_t size);
+
 char	*put_boolean(int b)
 {
 	return (b == 1 ? "true" : "false");
@@ -140,6 +143,13 @@ int		main(void)
 	{
 		char *src = strdup("");
 		printf("%s: %zu\n", src, ft_strlen(src));
+	}
+	printf("\n****** BONUS ******\n");
+	printf("\nFT_MEMALLOC\n");
+	{
+		char *s;
+		s = ft_memalloc(20);
+		printf("%s\n", s);
 	}
 	return (0);
 }
