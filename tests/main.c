@@ -14,6 +14,7 @@ int		ft_puts(const char *s);
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
+char	*ft_strnew(size_t size);
 
 // BONUS
 void	*ft_memalloc(size_t size);
@@ -147,9 +148,17 @@ int		main(void)
 	printf("\n****** BONUS ******\n");
 	printf("\nFT_MEMALLOC\n");
 	{
-		char *s;
-		s = ft_memalloc(20);
-		printf("%s\n", s);
+		char *s = NULL;
+		printf("before: %s\n", s);
+		s = ft_memalloc(20);		
+		printf("after: %s\n", s);
+	}
+	printf("\nFT_STRNEW\n");
+	{
+		char *s = NULL;
+		printf("before: %s\n", s);
+		s = ft_strnew(20);
+		printf("after: %s\n", s);
 	}
 	return (0);
 }
