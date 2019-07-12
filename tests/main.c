@@ -11,6 +11,8 @@ int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_puts(const char *s);
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
+void	*ft_memset(void *b, int c, size_t len);
 
 char	*put_boolean(int b)
 {
@@ -38,12 +40,6 @@ int		main(void)
 		ft_bzero(s, strlen(s));
 		printf("str: %s\t- len: %lu\n", s, strlen(s));
 	}
-	// {
-	// 	char *s = NULL;
-	// 	printf("str: %s\t- len: %lu\n", s, strlen(s));
-	// 	ft_bzero(s, strlen(s)); // le vai bzero segfault aussi ici
-	// 	printf("str: %s\t- len: %lu\n", s, strlen(s));
-	// }
 
 	printf("\nFT_STRCAT\n");
 	{
@@ -52,12 +48,6 @@ int		main(void)
 		printf("str1: %s\t- str2: %s\n", s1, s2);
 		printf("result: %s\n", ft_strcat(s1, s2));
 	}
-	// {
-	// 	char s2[9] = "*********";
-	// 	char s1[11] = "test strcat";
-	// 	printf("str1: %s\t- str2: %s\n", s1, s2);
-	// 	printf("result: %s\n", ft_strcat(s1, s2));
-	// }
 
 	printf("\n\tISALPHA\tISDIGIT\tISALNUM\tISASCII\tISPRINT\n");
 	{
@@ -105,6 +95,32 @@ int		main(void)
 		char *s = NULL;
 		puts(s);
 		ft_puts(s);
+	}
+	printf("\nFT_MEMCPY\n");
+	{
+		char dest[20];
+		char source[20] = "copie cette chaine!";
+		ft_memcpy(dest, source, 20);
+		printf("dest: %s\n", dest);
+	}
+	{
+		char dest[20] = "*******************";
+		char source[20] = "copie cette chaine!";
+		ft_memcpy(dest, source, 20);
+		printf("dest: %s\n", dest);
+	}
+	{
+		char *dest = strdup("*******************");
+		char *source = strdup("");
+		ft_memcpy(dest, source, 0);
+		printf("dest: %s\n", dest);
+	}
+	printf("\nFT_MEMSET\n");
+	{
+		char *src = strdup("                    ");
+		char c = 'i';
+		ft_memset(src, c, strlen(src));
+		printf("src: %s\n", src);
 	}
 	return (0);
 }
