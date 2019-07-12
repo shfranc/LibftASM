@@ -6,60 +6,54 @@
 
 section .data
 newline:
-	.string db 0xa, 0xd
-	.len equ $ - newline.string
+	.string db 0xa, 0xd, 0
 null:
-	.string db "(null)"
-	.len equ $ - null.string
+	.string db "(null)", 0
 
 section .text
 	global _ft_puts
+	extern _ft_strlen
 
-; int	ft_puts(const char *s);
 ; write(fd, ptr, len) // rdi, rsi, rdx
-_ft_puts:
+_ft_write:
 	push rbp
 	mov rbp, rsp
 	sub rsp, 16
 
 	mov rsi, rdi
+	call _ft_strlen
+	mov rdx, rax
 	mov rdi, STDOUT
-	cmp rsi, 0
-	je .print_null
+	mov rax, MACH_SYSCALL(WRITE)
+	syscall
 
-	push rsi
-	mov rdx, 0
-	.str_len:
-		cmp byte[rsi], 0
-		je .print_str
-		inc rdx
-		inc rsi
-		jmp .str_len
+	mov rsp, rbp
+	pop rbp
+	ret
 
-	.print_str:
-		pop rsi
-		jmp .put_endl
+; int	ft_puts(const char *s);
+_ft_puts:
+	push rbp
+	mov rbp, rsp
+	sub rsp, 16
 
-	.print_null:
-		mov rsi, null.string
-		mov rdx, null.len
-		jmp .put_endl
-
-	.put_endl:
-		mov rax, MACH_SYSCALL(WRITE)
-		syscall
-		cmp rax, -1
-		je .failure
-		mov rsi, newline.string
-		mov rdx, newline.len
-		mov rax, MACH_SYSCALL(WRITE)
-		syscall
+	cmp rdi, 0
+	jne .not_null
+	mov rdi, null.string
+	
+	.not_null:	
+		call _ft_write
 		cmp rax, -1
 		je .failure
 
-	.success:
-		mov rax, SUCCESS
-		jmp .leave
+	.new_line:
+		mov rdi, newline.string
+		call _ft_write
+		cmp rax, -1
+		je .failure
+
+	mov rax, SUCCESS
+	jmp .leave
 
 	.failure:
 		mov rax, EOF

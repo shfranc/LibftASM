@@ -79,22 +79,19 @@ int		main(void)
 	printf("\nFT_PUTS\n");
 	{
 		char s[12] = "test puts";
-		puts(s);
 		ft_puts(s);
 	}
 	{
-		char *s = strdup("test puts");
-		puts(s);
+		char *s = strdup("test puts2");
+		(void)s;
 		ft_puts(s);
 	}
 	{
 		char *s = strdup("");
-		puts(s);
 		ft_puts(s);
 	}
 	{
 		char *s = NULL;
-		puts(s);
 		ft_puts(s);
 	}
 	printf("\nFT_MEMCPY\n");
@@ -143,9 +140,6 @@ int		main(void)
 	{
 		char *src = strdup("");
 		printf("%s: %zu\n", src, ft_strlen(src));
-	}
-	{
-		printf("%s: %zu\n", "(null)", ft_strlen(NULL));
 	}
 	return (0);
 }
