@@ -24,6 +24,7 @@ _ft_strcat:
 		jmp .copy_s2
 
 	.end:
+		mov byte[rdi], 0
 		pop rdi
 		mov rax, rdi
 		jmp .leave

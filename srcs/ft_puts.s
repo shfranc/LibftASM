@@ -38,10 +38,10 @@ _ft_puts:
 	sub rsp, 16
 
 	cmp rdi, 0
-	jne .not_null
+	jne .put_str
 	mov rdi, null.string
-	
-	.not_null:
+
+	.put_str:
 		call _ft_write
 		cmp rax, -1
 		je .failure

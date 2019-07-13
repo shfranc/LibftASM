@@ -54,7 +54,7 @@ $(C_TEST): $(NAME) $(C_MAIN)
 	@printf "$(GREEN)%s$(RESET): OK\n" "$@"
 
 test: $(NAME) $(C_TEST)
-	@printf "$(GREEN)*** RUN C TESTS ***$(RESET):\n"
+	@printf "$(YELLOW)*** RUN C TESTS ***$(RESET):\n"
 	@./$(C_TEST)
 
 clean:

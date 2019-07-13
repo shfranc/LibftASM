@@ -1,6 +1,17 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <unistd.h>
+
+# define RED		"\033[1;31m"
+# define GREEN		"\033[1;32m"
+# define YELLOW		"\033[1;33m"
+# define BLUE		"\033[1;34m"
+# define MAGENTA	"\033[1;35m"
+# define CYAN		"\033[1;36m"
+# define WHITE		"\033[1;37m"
+# define RESET 		"\033[0m"
 
 void	ft_bzero(void *s, size_t size);
 char 	*ft_strcat(char *restrict s1, const char *restrict s2);
@@ -21,163 +32,209 @@ char	*ft_strcpy(char * dst, const char * src);
 // BONUS
 void	*ft_memalloc(size_t size);
 
-char	*put_boolean(int b)
+void	put_title(char *title)
 {
-	return (b == 1 ? "true" : "false");
+	fprintf(stdout, WHITE"%s"RESET, title);
+}
+
+char	*assert_ret(int ret1, int ret2)
+{
+	if (ret1 == ret2)
+		return (GREEN"OK"RESET);
+	return (RED"NOPE !"RESET);
+}
+
+char	*assert_str(char *str1, char *str2)
+{
+	if (str1 == NULL && str2 == NULL)
+		return (GREEN"OK"RESET);
+	if ((str1 == NULL && str2 != NULL)
+		|| (str1 != NULL && str2 == NULL))
+	{
+		return (RED"NOPE !"RESET);
+	}
+	if (strcmp(str1, str2) == 0)
+		return (GREEN"OK"RESET);
+	return (RED"NOPE !"RESET);
 }
 
 int		main(void)
 {
-	printf("\nFT_BZERO\n");
+	put_title("\nBZERO\n");
 	{
 		char s[12] = "test bzero";
-		printf("str: %s\t- len: %lu\n", s, strlen(s));
+		fprintf(stdout, "str: %s\t", s);
 		ft_bzero(s, strlen(s));
-		printf("str: %s\t- len: %lu\n", s, strlen(s));
+		fprintf(stdout, "\t- result: %lu -> %s\n", strlen(s), assert_ret(strlen(s), 0));
 	}
 	{
 		char *s = strdup("test bzero");
-		printf("str: %s\t- len: %lu\n", s, strlen(s));
+		fprintf(stdout, "str: %s\t", s);
 		ft_bzero(s, strlen(s));
-		printf("str: %s\t- len: %lu\n", s, strlen(s));
+		fprintf(stdout, "\t- result: %lu -> %s\n", strlen(s), assert_ret(strlen(s), 0));
 		free(s);
 	}
 	{
 		char *s = strdup("");
-		printf("str: %s\t- len: %lu\n", s, strlen(s));
+		fprintf(stdout, "str: %s\t", s);
 		ft_bzero(s, strlen(s));
-		printf("str: %s\t- len: %lu\n", s, strlen(s));
+		fprintf(stdout, "\t- result: %lu -> %s\n", strlen(s), assert_ret(strlen(s), 0));
+		free(s);
+	}
+	{
+		char *s = strdup("************************");
+		fprintf(stdout, "str: %s\t", s);
+		ft_bzero(s, strlen(s) - 10);
+		fprintf(stdout, "\t- result: %lu -> %s\n", strlen(s), assert_ret(strlen(s), 0));
 		free(s);
 	}
 
-	printf("\nFT_STRCAT\n");
+	put_title("\nSTRCAT\n");
 	{
-		char s2[9] = "*********";
-		char s1[20] = "test strcat";
-		printf("str1: %s\t- str2: %s\n", s1, s2);
-		printf("result: %s\n", ft_strcat(s1, s2));
+		char *src = strdup("*********");
+		char *dest1 = malloc(20); strcpy(dest1, "test strcat");
+		char *dest2 = malloc(20); strcpy(dest2, "test strcat");
+		fprintf(stdout, "str1: %s\t- str2: %s\t", dest1, src);
+		fprintf(stdout, "result: -> %s\n", assert_str(ft_strcat(dest1, src), strcat(dest2, src)));
+		free(dest1); free(dest2); free(src);
+	}
+	{
+		char *src = strdup("*********");
+		char *dest1 = malloc(20); strcpy(dest1, "");
+		char *dest2 = malloc(20); strcpy(dest2, "");
+		fprintf(stdout, "str1: %s\t- str2: %s\t", dest1, src);
+		fprintf(stdout, "result: -> %s\n", assert_str(ft_strcat(dest1, src), strcat(dest2, src)));
+		free(dest1); free(dest2); free(src);
+	}
+	{
+		char *src = strdup("");
+		char *dest1 = malloc(20); strcpy(dest1, "*********");
+		char *dest2 = malloc(20); strcpy(dest2, "*********");
+		fprintf(stdout, "str1: %s\t- str2: %s\t", dest1, src);
+		fprintf(stdout, "result: -> %s\n", assert_str(ft_strcat(dest1, src), strcat(dest2, src)));
+		free(dest1); free(dest2); free(src);
 	}
 
-	printf("\n\tISALPHA\tISDIGIT\tISALNUM\tISASCII\tISPRINT\n");
+	put_title("\n\tISALPHA\tISDIGIT\tISALNUM\tISASCII\tISPRINT\tTOUPPER\tTOLOWER\n");
 	{
 		int i = -1;
 		while (i <= 130)
 		{
-			printf("%3d %c \t%s\t%s\t%s\t%s\t%s\n", i, i,
-				put_boolean(ft_isalpha(i)),
-				put_boolean(ft_isdigit(i)),
-				put_boolean(ft_isalnum(i)),
-				put_boolean(ft_isascii(i)),
-				put_boolean(ft_isprint(i))
+			fprintf(stdout, "%3d %c \t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", i, isprint(i) ? i : '.',
+				assert_ret(ft_isalpha(i), isalpha(i)),
+				assert_ret(ft_isdigit(i), isdigit(i)),
+				assert_ret(ft_isalnum(i), isalnum(i)),
+				assert_ret(ft_isascii(i), isascii(i)),
+				assert_ret(ft_isprint(i), isprint(i)),
+				assert_ret(ft_toupper(i), toupper(i)),
+				assert_ret(ft_tolower(i), tolower(i))
 			);
 			i++;
 		}
 	}
 
-	printf("\n\tTOUPPER\tTOLOWER\n");
+	put_title("\nFT_PUTS\n");
 	{
-		int i = 32;
-		while (i <= 126)
-		{
-			printf("%c:\t%c\t%c\n", i, ft_toupper(i), ft_tolower(i));
-			i++;
-		}
-	}
-
-	printf("\nFT_PUTS\n");
-	{
-		char s[12] = "test puts";
+		char s[20] = "test puts stack";
 		ft_puts(s);
 	}
 	{
-		char *s = strdup("test puts2");
+		char *s = strdup("test puts strdup");
 		ft_puts(s);
 		free(s);
 	}
 	{
 		char *s = strdup("");
+		fprintf(stdout, "empty: ");
 		ft_puts(s);
 		free(s);
 	}
 	{
 		char *s = NULL;
+		fprintf(stdout, "null: ");
 		ft_puts(s);
 	}
-	printf("\nFT_MEMCPY\n");
+
+	put_title("\nFT_MEMCPY\n");
 	{
 		char dest[20];
 		char source[20] = "copie cette chaine!";
 		ft_memcpy(dest, source, 20);
-		printf("dest: %s\n", dest);
+		fprintf(stdout, "dest: %s\n", dest);
 	}
 	{
 		char dest[20] = "*******************";
 		char source[20] = "copie cette chaine!";
 		ft_memcpy(dest, source, 20);
-		printf("dest: %s\n", dest);
+		fprintf(stdout, "dest: %s\n", dest);
 	}
 	{
 		char *dest = strdup("*******************");
 		char *src = strdup("");
 		ft_memcpy(dest, src, 0);
-		printf("dest: %s\n", dest);
+		fprintf(stdout, "dest: %s\n", dest);
 		free(dest);
 		free(src);
 
 	}
-	printf("\nFT_MEMSET\n");
+
+	put_title("\nFT_MEMSET\n");
 	{
 		char *src = strdup("                    ");
 		char c = 'i';
 		ft_memset(src, c, strlen(src));
-		printf("src: %s\n", src);
+		fprintf(stdout, "src: %s\n", src);
 		free(src);
 	}
 	{
 		char *src = strdup("********************");
 		char c = 0;
 		ft_memset(src, c, strlen(src));
-		printf("src: %s\n", src);
+		fprintf(stdout, "src: %s\n", src);
 		free(src);
 	}
 	{
 		char *src = strdup("********************");
 		char c = 'o';
 		ft_memset(src, c, strlen(src) / 2);
-		printf("src: %s\n", src);
+		fprintf(stdout, "src: %s\n", src);
 		free(src);
 	}
-	printf("\nFT_STRLEN\n");
+
+	put_title("\nFT_STRLEN\n");
 	{
 		char *src = strdup("Hello World!");
-		printf("%s: %zu\n", src, ft_strlen(src));
+		fprintf(stdout, "%s: %zu\n", src, ft_strlen(src));
 		free(src);
 	}
 	{
 		char *src = strdup("");
-		printf("%s: %zu\n", src, ft_strlen(src));
+		fprintf(stdout, "%s: %zu\n", src, ft_strlen(src));
 		free(src);
 	}
-	printf("\n****** BONUS ******\n");
-	printf("\nFT_MEMALLOC\n");
+
+	put_title("\n****** BONUS ******\n");
+	put_title("\nFT_MEMALLOC\n");
 	{
 		char *s = NULL;
-		printf("before: %s\n", s);
-		s = ft_memalloc(20);		
-		printf("after: %s\n", s);
+		fprintf(stdout, "before: %s\n", s);
+		s = ft_memalloc(20);
+		fprintf(stdout, "after: %s\n", s);
 	}
-	printf("\nFT_STRNEW\n");
+
+	put_title("\nFT_STRNEW\n");
 	{
 		char *s = NULL;
-		printf("before: %s\n", s);
+		fprintf(stdout, "before: %s\n", s);
 		s = ft_strnew(20);
-		printf("after: %s\n", s);
+		fprintf(stdout, "after: %s\n", s);
 	}
-	printf("\nFT_STRCPY\n");
+
+	put_title("\nFT_STRCPY\n");
 	{
 		char dest[20];
 		char src[20] = "copie cette chaine!";
-		printf("%s\n", ft_strcpy(dest, src));
+		fprintf(stdout, "%s\n", ft_strcpy(dest, src));
 	}
 	return (0);
 }
