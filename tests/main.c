@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void	ft_bzero(void *s, size_t size);
 char 	*ft_strcat(char *restrict s1, const char *restrict s2);
@@ -15,6 +16,7 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
 char	*ft_strnew(size_t size);
+char	*ft_strcpy(char * dst, const char * src);
 
 // BONUS
 void	*ft_memalloc(size_t size);
@@ -38,12 +40,14 @@ int		main(void)
 		printf("str: %s\t- len: %lu\n", s, strlen(s));
 		ft_bzero(s, strlen(s));
 		printf("str: %s\t- len: %lu\n", s, strlen(s));
+		free(s);
 	}
 	{
 		char *s = strdup("");
 		printf("str: %s\t- len: %lu\n", s, strlen(s));
 		ft_bzero(s, strlen(s));
 		printf("str: %s\t- len: %lu\n", s, strlen(s));
+		free(s);
 	}
 
 	printf("\nFT_STRCAT\n");
@@ -87,12 +91,13 @@ int		main(void)
 	}
 	{
 		char *s = strdup("test puts2");
-		(void)s;
 		ft_puts(s);
+		free(s);
 	}
 	{
 		char *s = strdup("");
 		ft_puts(s);
+		free(s);
 	}
 	{
 		char *s = NULL;
@@ -113,9 +118,12 @@ int		main(void)
 	}
 	{
 		char *dest = strdup("*******************");
-		char *source = strdup("");
-		ft_memcpy(dest, source, 0);
+		char *src = strdup("");
+		ft_memcpy(dest, src, 0);
 		printf("dest: %s\n", dest);
+		free(dest);
+		free(src);
+
 	}
 	printf("\nFT_MEMSET\n");
 	{
@@ -123,27 +131,32 @@ int		main(void)
 		char c = 'i';
 		ft_memset(src, c, strlen(src));
 		printf("src: %s\n", src);
+		free(src);
 	}
 	{
 		char *src = strdup("********************");
 		char c = 0;
 		ft_memset(src, c, strlen(src));
 		printf("src: %s\n", src);
+		free(src);
 	}
 	{
 		char *src = strdup("********************");
 		char c = 'o';
 		ft_memset(src, c, strlen(src) / 2);
 		printf("src: %s\n", src);
+		free(src);
 	}
 	printf("\nFT_STRLEN\n");
 	{
 		char *src = strdup("Hello World!");
 		printf("%s: %zu\n", src, ft_strlen(src));
+		free(src);
 	}
 	{
 		char *src = strdup("");
 		printf("%s: %zu\n", src, ft_strlen(src));
+		free(src);
 	}
 	printf("\n****** BONUS ******\n");
 	printf("\nFT_MEMALLOC\n");
@@ -159,6 +172,12 @@ int		main(void)
 		printf("before: %s\n", s);
 		s = ft_strnew(20);
 		printf("after: %s\n", s);
+	}
+	printf("\nFT_STRCPY\n");
+	{
+		char dest[20];
+		char src[20] = "copie cette chaine!";
+		printf("%s\n", ft_strcpy(dest, src));
 	}
 	return (0);
 }
