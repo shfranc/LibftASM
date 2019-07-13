@@ -5,14 +5,14 @@ section .text
 _ft_memcpy:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 16
+	sub rsp, 64
 
-	push rdi
+	mov rsp, rdi
 	mov rcx, rdx
 	cld
 	rep movsb ; repeat copying bytes from rsi to rdi until rcx = 0
 
-	pop rdi
+	mov rdi, rsp
 	mov rax, rdi
 	.leave:
 		mov rsp, rbp

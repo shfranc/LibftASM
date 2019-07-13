@@ -41,7 +41,7 @@ _ft_puts:
 	jne .not_null
 	mov rdi, null.string
 	
-	.not_null:	
+	.not_null:
 		call _ft_write
 		cmp rax, -1
 		je .failure
