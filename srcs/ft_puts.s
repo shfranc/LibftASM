@@ -39,21 +39,24 @@ _ft_puts:
 
 	cmp rdi, 0
 	jne .put_str
-	mov rdi, null.string
 
+	.put_null:
+		lea rdi, [rel null.string]
+	
 	.put_str:
 		call _ft_write
 		cmp rax, -1
 		je .failure
-
-	.new_line:
-		mov rdi, newline.string
+	
+	.put_newline:
+		lea rdi, [rel newline.string]
 		call _ft_write
 		cmp rax, -1
 		je .failure
 
-	mov rax, SUCCESS
-	jmp .leave
+	.success:
+		mov rax, SUCCESS
+		jmp .leave
 
 	.failure:
 		mov rax, EOF

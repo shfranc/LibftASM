@@ -5,20 +5,18 @@ section .text
 _ft_strlen:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 64
+	sub rsp, 16
 
-	mov rsp, rdi
-	mov rax, 0
+	sub rcx, rcx	; initialize rcx to 0
+	not rcx			; set rcx to its highest value (it will be decreased next)
+	sub rax, rax	; initalize rax to 0
 	cld
-	repne scasb ; scan until not equal or not zero
-
-	sub rdi, rsp
-	cmp rdi, 0
-	je .leave
-	sub rdi, 1
+	repne scasb 	; scan until not equal or not zero
+	not rcx			; reverse rcx to have the positive result
+	dec rcx			; null terminator not counted
+	mov rax, rcx
 
 	.leave:
-		mov rax, rdi
 		mov rsp, rbp
 		pop rbp
 		ret
