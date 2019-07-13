@@ -21,12 +21,13 @@ SRCS = 	$(addprefix $(PATH_SRCS)/, \
 	ft_memalloc.s \
 	ft_strnew.s \
 	ft_strcpy.s \
+	ft_strdup.s \
 	)
 
 PATH_OBJS = objs
 OBJS = $(SRCS:$(PATH_SRCS)/%.s=$(PATH_OBJS)/%.o)
 
-C_TEST = compil_tests
+C_TEST = tests/compil_tests
 C_MAIN = tests/main.c
 C_MAIN_O = tests/main.o
 
