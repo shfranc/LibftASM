@@ -10,10 +10,9 @@ _ft_memcpy:
 	mov rsp, rdi
 	mov rcx, rdx
 	cld
-	rep movsb ; repeat copying bytes from rsi to rdi until rcx = 0
+	rep movsb 		; repeat copying bytes from rsi to rdi until rcx = 0
 
-	mov rdi, rsp
-	mov rax, rdi
+	mov rax, rsp	; return beginning of the dest string
 	.leave:
 		mov rsp, rbp
 		pop rbp
