@@ -32,7 +32,8 @@ char	*ft_strdup(const char *s1);
 // BONUS
 void	*ft_memalloc(size_t size);
 char	*ft_strnew(size_t size);
-char	*ft_strcpy(char * dst, const char * src);
+char	*ft_strcpy(char *dst, const char * src);
+int		ft_strcmp(const char *s1, const char *s2);
 
 void	put_title(char *title)
 {
@@ -281,6 +282,38 @@ int		main(void)
 	{
 		char *src = strdup("");
 		fprintf(stdout, "src: %s -> %s\n", src, assert_str(ft_strdup(src), strdup(src)));
+	}
+
+	put_title("STRCMP");
+	{
+		char *s1 = strdup("lol");
+		char *s2 = strdup("lol");
+		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		free(s1); free(s2);
+	}
+	{
+		char *s1 = strdup("lol");
+		char *s2 = strdup("lol2");
+		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		free(s1); free(s2);
+	}
+	{
+		char *s1 = strdup("lolilol");
+		char *s2 = strdup("");
+		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		free(s1); free(s2);
+	}
+	{
+		char *s1 = strdup("");
+		char *s2 = strdup("lolilol");
+		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		free(s1); free(s2);
+	}
+	{
+		char *s1 = strdup("");
+		char *s2 = strdup("");
+		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		free(s1); free(s2);
 	}
 	return (0);
 }

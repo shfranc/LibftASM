@@ -39,6 +39,7 @@ make test	# compile and execute some C unit tests
 - memalloc
 - strnew
 - strcpy
+- strcmp
 
 ## Cat
 Writing in assembly the CAT binary
