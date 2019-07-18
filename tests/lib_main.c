@@ -290,31 +290,31 @@ int		main(void)
 	{
 		char *s1 = strdup("lol");
 		char *s2 = strdup("lol");
-		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		fprintf(stdout, "s1: %s s2: %s - ft_ret: %d ret: %d -> %s\n", s1, s2, ft_strcmp(s1, s2), strcmp(s1, s2), assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
 		free(s1); free(s2);
 	}
 	{
 		char *s1 = strdup("lol");
 		char *s2 = strdup("lol2");
-		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		fprintf(stdout, "s1: %s s2: %s - ft_ret: %d ret: %d -> %s\n", s1, s2, ft_strcmp(s1, s2), strcmp(s1, s2), assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
 		free(s1); free(s2);
 	}
 	{
 		char *s1 = strdup("lolilol");
-		char *s2 = strdup("");
-		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		char *s2 = strdup("l");
+		fprintf(stdout, "s1: %s s2: %s - ft_ret: %d ret: %d -> %s\n", s1, s2, ft_strcmp(s1, s2), strcmp(s1, s2), assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
 		free(s1); free(s2);
 	}
 	{
-		char *s1 = strdup("");
+		char *s1 = strdup("l");
 		char *s2 = strdup("lolilol");
-		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		fprintf(stdout, "s1: %s s2: %s - ft_ret: %d ret: %d -> %s\n", s1, s2, ft_strcmp(s1, s2), strcmp(s1, s2), assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
 		free(s1); free(s2);
 	}
 	{
 		char *s1 = strdup("");
 		char *s2 = strdup("");
-		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		fprintf(stdout, "s1: %s s2: %s - ft_ret: %d ret: %d -> %s\n", s1, s2, ft_strcmp(s1, s2), strcmp(s1, s2), assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
 		free(s1); free(s2);
 	}
 	return (0);
