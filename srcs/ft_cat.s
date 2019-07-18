@@ -17,6 +17,8 @@ _ft_cat:
 	mov rbp, rsp
 	sub rsp, 64
 
+	cmp rdi, 0							; check valid fd
+	jl .leave
 	mov [rsp], rdi						; save fd
 
 	.loop:
