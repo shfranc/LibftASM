@@ -29,6 +29,8 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
+//CAT
+void	ft_cat(int fd);
 // BONUS
 void	*ft_memalloc(size_t size);
 char	*ft_strnew(size_t size);
@@ -168,10 +170,10 @@ int		main(void)
 		char *src = strdup("A");
 		fprintf(stdout, "src: %s = %zu -> %s\n", src, ft_strlen(src), assert_ret(ft_strlen(src), strlen(src)));
 		free(src);
-	}	
+	}
 	{
 		char *src = strdup("");
-		fprintf(stdout, "src: %s = %zu -> %s\n", src, ft_strlen(src), assert_ret(ft_strlen(src), strlen(src)));		
+		fprintf(stdout, "src: %s = %zu -> %s\n", src, ft_strlen(src), assert_ret(ft_strlen(src), strlen(src)));
 		free(src);
 	}
 
@@ -182,7 +184,7 @@ int		main(void)
 		char *src = strdup("copie cette chaine!");
 		fprintf(stdout, "dest: %s src: %s\t", dest1, src);
 		fprintf(stdout, " -> %s\n", assert_str(ft_memcpy(dest1, src, ft_strlen(src)), memcpy(dest2, src, ft_strlen(src))));
-		free(dest1); free(dest2); free(src);	
+		free(dest1); free(dest2); free(src);
 	}
 	{
 		char *dest1 = strdup("*******************");
@@ -190,7 +192,7 @@ int		main(void)
 		char *src = strdup("copie cette chaine!");
 		fprintf(stdout, "dest: %s src: %s\t", dest1, src);
 		fprintf(stdout, " -> %s\n", assert_str(ft_memcpy(dest1, src, ft_strlen(src)), memcpy(dest2, src, ft_strlen(src))));
-		free(dest1); free(dest2); free(src);	
+		free(dest1); free(dest2); free(src);
 	}
 	{
 		char *dest1 = strdup("*******************");
@@ -247,7 +249,7 @@ int		main(void)
 		char *src = strdup("copie cette chaine!");
 		fprintf(stdout, "dest: %s src: %s\t", dest1, src);
 		fprintf(stdout, " -> %s\n", assert_str(ft_strcpy(dest1, src), strcpy(dest2, src)));
-		free(dest1); free(dest2); free(src);	
+		free(dest1); free(dest2); free(src);
 	}
 	{
 		char *dest1 = strdup("*******************");
@@ -255,7 +257,7 @@ int		main(void)
 		char *src = strdup("copie cette chaine!");
 		fprintf(stdout, "dest: %s src: %s\t", dest1, src);
 		fprintf(stdout, " -> %s\n", assert_str(ft_strcpy(dest1, src), strcpy(dest2, src)));
-		free(dest1); free(dest2); free(src);	
+		free(dest1); free(dest2); free(src);
 	}
 	{
 		char *dest1 = strdup("*******************");
@@ -274,7 +276,7 @@ int		main(void)
 	{
 		char *src = strdup("Hello World! 2");
 		fprintf(stdout, "src: %s -> %s\n", src, assert_str(ft_strdup(src), strdup(src)));
-	}	
+	}
 	{
 		char src[15] = "";
 		fprintf(stdout, "src: %s -> %s\n", src, assert_str(ft_strdup(src), strdup(src)));

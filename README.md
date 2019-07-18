@@ -11,8 +11,8 @@ Setup: X86, Intel syntax, with nasm.
 
 ### Compilation
 ```bash
-make		# compile the library
-make test	# compile and execute some C unit tests
+make			# compile the library
+make test		# compile and execute some C unit tests
 ```
 
 ## Functions
@@ -35,11 +35,14 @@ make test	# compile and execute some C unit tests
 - memcpy
 - strdup
 
-### Bonus
+### Part3
+- ft_cat: a function that act like the `cat` binary
+```bash
+make cat_test	# compile and execute some bash unit tests for ft_cat
+```
+
+## Bonus
 - memalloc
 - strnew
 - strcpy
 - strcmp
-
-## Cat
-Writing in assembly the CAT binary
