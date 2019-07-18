@@ -42,17 +42,15 @@ _ft_puts:
 
 	.put_null:
 		lea rdi, [rel null.string]
-	
+
 	.put_str:
 		call _ft_write
-		cmp rax, -1
-		je .failure
-	
+		jc .failure			; exit Error (rax is neg, carry flag is set)
+
 	.put_newline:
 		lea rdi, [rel newline.string]
 		call _ft_write
-		cmp rax, -1
-		je .failure
+		jc .failure			; exit Error (rax is neg, carry flag is set)
 
 	.success:
 		mov rax, SUCCESS
