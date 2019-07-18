@@ -12,6 +12,8 @@ int		main(int argc, char **argv)
 		return (1);
 	if (strcmp(argv[1], "STDIN") == 0)
 		ft_cat(0);
+	if (strcmp(argv[1], "WRONG FD") == 0)
+		ft_cat(-42);
 	else
 	{
 		int fd = open(argv[1], O_RDONLY, 0);

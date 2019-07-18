@@ -17,8 +17,6 @@ _ft_cat:
 	mov rbp, rsp
 	sub rsp, 64
 
-	cmp rdi, 0							; check valid fd
-	jl .leave
 	mov [rsp], rdi						; save fd
 
 	.loop:
@@ -33,8 +31,9 @@ _ft_cat:
 		mov rdx, bufsize				; bufsize
 		mov rax, MACH_SYSCALL(READ)
 		syscall
-		cmp rax, 0						; check read EOF or Error ret
-		jle .leave						; exit
+		jc .leave						; exit Error (rax is neg, carry flag is set)
+		cmp rax, 0						; check read EOF
+		je .leave						; exit
 
 		; write
 		mov rdi, STDOUT					; fd

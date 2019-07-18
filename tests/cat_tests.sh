@@ -21,6 +21,9 @@ for file in "$input_folder"/*; do
 
 done
 
+printf "\nReading on WRONG FD:\n"
+$ft_cat "WRONG FD"
+
 printf "\nReading on STDIN:\n"
 $ft_cat "STDIN"
 
