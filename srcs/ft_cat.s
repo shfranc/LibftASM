@@ -41,8 +41,7 @@ _ft_cat:
 		mov rdx, rax					; len
 		mov rax, MACH_SYSCALL(WRITE)
 		syscall
-		cmp rax, -1						; check write Error ret
-		je .leave						; exit failure
+		jc .leave						; exit Error (rax is neg, carry flag is set)
 
 		jmp .loop						; while true
 

@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 GREEN="\033[1;32m"
 RED="\033[1;31m"
@@ -21,9 +21,12 @@ for file in "$input_folder"/*; do
 
 done
 
-printf "\nReading on WRONG FD:\n"
-$ft_cat "WRONG FD"
+ft_ret=$($ft_cat "WRONG FD")
+	if [[ "$ft_ret" == "" ]]; then
+		printf "\n%-50s$GREEN%s$DEF\n" "Reading on WRONG FD" "OK"
+	else
+		printf "\n%-50s$RED%s$DEF\n" "Reading on WRONG FD" "KO"
+	fi
 
 printf "\nReading on STDIN:\n"
 $ft_cat "STDIN"
-
