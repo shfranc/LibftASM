@@ -34,6 +34,7 @@ void	*ft_memalloc(size_t size);
 char	*ft_strnew(size_t size);
 char	*ft_strcpy(char *dst, const char * src);
 int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_atoi(char *str);
 
@@ -317,6 +318,63 @@ int		main(void)
 		fprintf(stdout, "s1: %s s2: %s - ft_ret: %d ret: %d -> %s\n", s1, s2, ft_strcmp(s1, s2), strcmp(s1, s2), assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
 		free(s1); free(s2);
 	}
+
+	put_title("STRCHR");
+	{
+		char *str = strdup("lol");
+		char c = 'l';
+		fprintf(stdout, "str: %s c: %c - ft_ret: %s ret: %s -> %s\n", str, c, ft_strchr(str, c), strchr(str, c), assert_str(ft_strchr(str, c), strchr(str, c)));
+		free(str);
+	}
+	{
+		char *str = strdup("lol");
+		char c = 'o';
+		fprintf(stdout, "str: %s c: %c - ft_ret: %s ret: %s -> %s\n", str, c, ft_strchr(str, c), strchr(str, c), assert_str(ft_strchr(str, c), strchr(str, c)));
+		free(str);
+	}
+	{
+		char *str = strdup("lol");
+		char c = 'z';
+		fprintf(stdout, "str: %s c: %c - ft_ret: %s ret: %s -> %s\n", str, c, ft_strchr(str, c), strchr(str, c), assert_str(ft_strchr(str, c), strchr(str, c)));
+		free(str);
+	}
+	{
+		char *str = strdup("lol");
+		char c = '\0';
+		fprintf(stdout, "str: %s c: %c - ft_ret: %s ret: %s -> %s\n", str, c, ft_strchr(str, c), strchr(str, c), assert_str(ft_strchr(str, c), strchr(str, c)));
+		free(str);
+	}
+	{
+		char *str = strdup("");
+		char c = '\0';
+		fprintf(stdout, "str: %s c: %c - ft_ret: %s ret: %s -> %s\n", str, c, ft_strchr(str, c), strchr(str, c), assert_str(ft_strchr(str, c), strchr(str, c)));
+		free(str);
+	}
+	{
+		char *str = strdup("");
+		char c = 'o';
+		fprintf(stdout, "str: %s c: %c - ft_ret: %s ret: %s -> %s\n", str, c, ft_strchr(str, c), strchr(str, c), assert_str(ft_strchr(str, c), strchr(str, c)));
+		free(str);
+	}
+	{
+		char *str = strdup("o");
+		char c = 'o';
+		fprintf(stdout, "str: %s c: %c - ft_ret: %s ret: %s -> %s\n", str, c, ft_strchr(str, c), strchr(str, c), assert_str(ft_strchr(str, c), strchr(str, c)));
+		free(str);
+	}
+	{
+		char *str = strdup("o");
+		char c = 'z';
+		fprintf(stdout, "str: %s c: %c - ft_ret: %s ret: %s -> %s\n", str, c, ft_strchr(str, c), strchr(str, c), assert_str(ft_strchr(str, c), strchr(str, c)));
+		free(str);
+	}
+	{
+		char *str = strdup("o");
+		char c = -1;
+		fprintf(stdout, "str: %s c: %c - ft_ret: %s ret: %s -> %s\n", str, c, ft_strchr(str, c), strchr(str, c), assert_str(ft_strchr(str, c), strchr(str, c)));
+		free(str);
+	}
+	return 0;
 
 	put_title("STRJOIN");
 	{
