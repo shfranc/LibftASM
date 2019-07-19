@@ -29,13 +29,12 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
-//CAT
-void	ft_cat(int fd);
 // BONUS
 void	*ft_memalloc(size_t size);
 char	*ft_strnew(size_t size);
 char	*ft_strcpy(char *dst, const char * src);
 int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strjoin(char *s1, char *s2);
 
 void	put_title(char *title)
 {
@@ -301,12 +300,12 @@ int		main(void)
 	}
 	{
 		char *s1 = strdup("lolilol");
-		char *s2 = strdup("l");
+		char *s2 = strdup("");
 		fprintf(stdout, "s1: %s s2: %s - ft_ret: %d ret: %d -> %s\n", s1, s2, ft_strcmp(s1, s2), strcmp(s1, s2), assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
 		free(s1); free(s2);
 	}
 	{
-		char *s1 = strdup("l");
+		char *s1 = strdup("");
 		char *s2 = strdup("lolilol");
 		fprintf(stdout, "s1: %s s2: %s - ft_ret: %d ret: %d -> %s\n", s1, s2, ft_strcmp(s1, s2), strcmp(s1, s2), assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
 		free(s1); free(s2);
@@ -315,6 +314,38 @@ int		main(void)
 		char *s1 = strdup("");
 		char *s2 = strdup("");
 		fprintf(stdout, "s1: %s s2: %s - ft_ret: %d ret: %d -> %s\n", s1, s2, ft_strcmp(s1, s2), strcmp(s1, s2), assert_ret(ft_strcmp(s1, s2), strcmp(s1, s2)));
+		free(s1); free(s2);
+	}
+
+	put_title("STRJOIN");
+	{
+		char *s1 = strdup("lol");
+		char *s2 = strdup("lol");
+		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_str(ft_strjoin(s1, s2), "lollol"));
+		free(s1); free(s2);
+	}
+	{
+		char *s1 = strdup("lol");
+		char *s2 = strdup("lol2");
+		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_str(ft_strjoin(s1, s2), "lollol2"));
+		free(s1); free(s2);
+	}
+	{
+		char *s1 = strdup("lolilol");
+		char *s2 = strdup("");
+		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_str(ft_strjoin(s1, s2), "lolilol"));
+		free(s1); free(s2);
+	}
+	{
+		char *s1 = strdup("");
+		char *s2 = strdup("lolilol");
+		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_str(ft_strjoin(s1, s2), "lolilol"));
+		free(s1); free(s2);
+	}
+	{
+		char *s1 = strdup("");
+		char *s2 = strdup("");
+		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_str(ft_strjoin(s1, s2), ""));
 		free(s1); free(s2);
 	}
 	return (0);

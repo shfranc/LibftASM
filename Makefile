@@ -23,6 +23,7 @@ SRCS = 	$(addprefix $(PATH_SRCS)/, \
 	ft_strcpy.s \
 	ft_strdup.s \
 	ft_strcmp.s \
+	ft_strjoin.s \
 	ft_cat.s \
 	)
 
