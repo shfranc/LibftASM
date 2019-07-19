@@ -11,6 +11,13 @@ _ft_strjoin:
 	mov rbp, rsp
 	sub rsp, 128
 
+	; protect if one of the string is NULL
+	mov rax, 0
+	cmp rdi, 0
+	je .leave
+	cmp rsi, 0
+	je .leave
+
 	mov [rsp], rdi			; save s1
 	mov [rsp + 64], rsi		; save s2
 
