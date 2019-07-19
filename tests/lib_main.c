@@ -402,6 +402,16 @@ int		main(void)
 		free(str);
 	}
 	{
+		char *str = strdup("+42");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("++++42");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
 		char *str = strdup("qwert");
 		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
