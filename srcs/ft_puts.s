@@ -6,56 +6,44 @@
 
 section .data
 newline:
-	.string db 0xa, 0xd
-	.len equ $ - newline.string
+	.string db 10, 0		; NEWLINE 10
 null:
-	.string db "(null)"
-	.len equ $ - null.string
+	.string db "(null)", 0
 
 section .text
 	global _ft_puts
+	extern _ft_strlen
+
+; write(fd, ptr, len) // rdi, rsi, rdx
+_ft_write:
+	mov rsi, rdi			; *ptr
+	call _ft_strlen
+	mov rdx, rax			; len
+	mov rdi, STDOUT			; fd
+	mov rax, MACH_SYSCALL(WRITE)
+	syscall
+	ret
 
 ; int	ft_puts(const char *s);
-; write(fd, ptr, len) // rdi, rsi, rdx
 _ft_puts:
 	push rbp
 	mov rbp, rsp
 	sub rsp, 16
 
-	mov rsi, rdi
-	mov rdi, STDOUT
-	cmp rsi, 0
-	je .print_null
+	cmp rdi, 0				; check if string is null
+	jne .put_str
 
-	push rsi
-	mov rdx, 0
-	.str_len:
-		cmp byte[rsi], 0
-		je .print_str
-		inc rdx
-		inc rsi
-		jmp .str_len
+	.put_null:
+		lea rdi, [rel null.string]
 
-	.print_str:
-		pop rsi
-		jmp .put_endl
+	.put_str:
+		call _ft_write
+		jc .failure			; exit Error (rax is neg, carry flag is set)
 
-	.print_null:
-		mov rsi, null.string
-		mov rdx, null.len
-		jmp .put_endl
-
-	.put_endl:
-		mov rax, MACH_SYSCALL(WRITE)
-		syscall
-		cmp rax, -1
-		je .failure
-		mov rsi, newline.string
-		mov rdx, newline.len
-		mov rax, MACH_SYSCALL(WRITE)
-		syscall
-		cmp rax, -1
-		je .failure
+	.put_newline:
+		lea rdi, [rel newline.string]
+		call _ft_write
+		jc .failure			; exit Error (rax is neg, carry flag is set)
 
 	.success:
 		mov rax, SUCCESS

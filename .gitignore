@@ -1,6 +1,6 @@
 libfts.a
-compil_tests
-a.out
+lib_tests
+cat_tests
 *.o
 .vscode/
 .DS_STORE
