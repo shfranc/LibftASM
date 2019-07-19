@@ -47,3 +47,4 @@ make cat_test	# compile and execute some bash unit tests for ft_cat
 - strcpy
 - strcmp
 - strjoin
+- atoi

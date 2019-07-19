@@ -35,6 +35,7 @@ char	*ft_strnew(size_t size);
 char	*ft_strcpy(char *dst, const char * src);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strjoin(char *s1, char *s2);
+int		ft_atoi(char *str);
 
 void	put_title(char *title)
 {
@@ -347,6 +348,73 @@ int		main(void)
 		char *s2 = strdup("");
 		fprintf(stdout, "s1: %s s2: %s -> %s\n", s1, s2, assert_str(ft_strjoin(s1, s2), ""));
 		free(s1); free(s2);
+	}
+
+	put_title("ATOI");
+	{
+		char *str = strdup("1");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("-42");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("   123");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("	-123");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("0");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("2147483647");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("-2147483648");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("214748364700");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("-214748364800");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("123abc");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("qwert");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("           ");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", "(only spaces)", ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
+	}
+	{
+		char *str = strdup("");
+		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", "(vide)", ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		free(str);
 	}
 	return (0);
 }
