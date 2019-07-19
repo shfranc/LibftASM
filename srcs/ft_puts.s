@@ -16,19 +16,12 @@ section .text
 
 ; write(fd, ptr, len) // rdi, rsi, rdx
 _ft_write:
-	push rbp
-	mov rbp, rsp
-	sub rsp, 16
-
-	mov rsi, rdi
+	mov rsi, rdi		; *ptr
 	call _ft_strlen
-	mov rdx, rax
-	mov rdi, STDOUT
+	mov rdx, rax		; len
+	mov rdi, STDOUT		; fd
 	mov rax, MACH_SYSCALL(WRITE)
 	syscall
-
-	mov rsp, rbp
-	pop rbp
 	ret
 
 ; int	ft_puts(const char *s);
@@ -37,7 +30,7 @@ _ft_puts:
 	mov rbp, rsp
 	sub rsp, 16
 
-	cmp rdi, 0
+	cmp rdi, 0			; chck if string is null
 	jne .put_str
 
 	.put_null:
