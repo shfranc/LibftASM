@@ -122,22 +122,22 @@ int		main(void)
 	}
 
 	put_title("\tISALPHA\tISDIGIT\tISALNUM\tISASCII\tISPRINT\tTOUPPER\tTOLOWER");
-	// {
-	// 	int i = -1;
-	// 	while (i <= 130)
-	// 	{
-	// 		fprintf(stdout, "%3d %c \t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", i, isprint(i) ? i : '.',
-	// 			assert_ret(ft_isalpha(i), isalpha(i)),
-	// 			assert_ret(ft_isdigit(i), isdigit(i)),
-	// 			assert_ret(ft_isalnum(i), isalnum(i)),
-	// 			assert_ret(ft_isascii(i), isascii(i)),
-	// 			assert_ret(ft_isprint(i), isprint(i)),
-	// 			assert_ret(ft_toupper(i), toupper(i)),
-	// 			assert_ret(ft_tolower(i), tolower(i))
-	// 		);
-	// 		i++;
-	// 	}
-	// }
+	{
+		int i = -1;
+		while (i <= 130)
+		{
+			fprintf(stdout, "%3d %c \t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", i, isprint(i) ? i : '.',
+				assert_ret(ft_isalpha(i), isalpha(i)),
+				assert_ret(ft_isdigit(i), isdigit(i)),
+				assert_ret(ft_isalnum(i), isalnum(i)),
+				assert_ret(ft_isascii(i), isascii(i)),
+				assert_ret(ft_isprint(i), isprint(i)),
+				assert_ret(ft_toupper(i), toupper(i)),
+				assert_ret(ft_tolower(i), tolower(i))
+			);
+			i++;
+		}
+	}
 
 	put_title("PUTS");
 	{
@@ -374,7 +374,6 @@ int		main(void)
 		fprintf(stdout, "str: %s c: %c - ft_ret: %s ret: %s -> %s\n", str, c, ft_strchr(str, c), strchr(str, c), assert_str(ft_strchr(str, c), strchr(str, c)));
 		free(str);
 	}
-	return 0;
 
 	put_title("STRJOIN");
 	{
@@ -411,77 +410,77 @@ int		main(void)
 	put_title("ATOI");
 	{
 		char *str = strdup("1");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("-42");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("   123");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("	-123");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("0");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("2147483647");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("-2147483648");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("214748364700");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("-214748364800");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("123abc");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("+42");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("++++42");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("qwert");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", str, ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", str, assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("           ");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", "(only spaces)", ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", "(only spaces)", assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	{
 		char *str = strdup("");
-		fprintf(stdout, "str: %-25s ft_ret: %12d - ret: %12d -> %s\n", "(vide)", ft_atoi(str), atoi(str), assert_ret(ft_atoi(str), atoi(str)));
+		fprintf(stdout, "str: %-25s -> %s\n", "(vide)", assert_ret(ft_atoi(str), atoi(str)));
 		free(str);
 	}
 	return (0);
