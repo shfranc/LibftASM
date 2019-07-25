@@ -15,7 +15,7 @@ section .text
 _ft_cat:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 64
+	sub rsp, 16
 
 	mov [rsp], rdi						; save fd
 

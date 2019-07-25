@@ -9,7 +9,7 @@ section .text
 _ft_strjoin:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 128
+	sub rsp, 16
 
 	; protect if one of the string is NULL
 	mov rax, 0
@@ -19,7 +19,7 @@ _ft_strjoin:
 	je .leave
 
 	mov [rsp], rdi			; save s1
-	mov [rsp + 64], rsi		; save s2
+	mov [rsp + 8], rsi		; save s2
 
 	; get new string len
 	call _ft_strlen			; len s1
@@ -40,7 +40,7 @@ _ft_strjoin:
 	call _ft_strcpy			; copy s1
 
 	mov rdi, rax
-	mov rsi, [rsp + 64]
+	mov rsi, [rsp + 8]
 	call _ft_strcat			; copy s2
 
 	.leave:

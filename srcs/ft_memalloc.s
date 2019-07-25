@@ -7,7 +7,7 @@ section .text
 _ft_memalloc:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 32
+	sub rsp, 16
 
 	mov [rsp], rdi
 	call _malloc

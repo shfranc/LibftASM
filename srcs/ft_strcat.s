@@ -7,7 +7,7 @@ _ft_strcat:
 	mov rbp, rsp
 	sub rsp, 16
 
-	push rdi
+	mov [rsp], rdi
 	.loop: ; move at the end of s1
 		cmp byte[rdi], 0
 		je .copy_s2
@@ -25,8 +25,7 @@ _ft_strcat:
 
 	.end:
 		mov byte[rdi], 0
-		pop rdi
-		mov rax, rdi
+		mov rax, [rsp]
 		jmp .leave
 
 	.leave:
